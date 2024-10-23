@@ -1,6 +1,8 @@
 #tensorflow es de google y hay resti de modelos ya hechos 
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
+
+import matplotlib as plt
 
 # los datos de entrenamiento, la entrada y lo que se supone debe salir :p
 celsius_q = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float)
@@ -8,7 +10,7 @@ fahrenheit_a = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float)
 
 # se usa keras para hacer todo más fácil y bonito :p
 capa = tf.keras.layers.Dense(units=1, input_shape=[1])
-model = tf.keras.Sequential([capa])
+modelo = tf.keras.Sequential([capa])
 
 
 #configuramos el modelo para que aprenda, le decimos qué
@@ -51,7 +53,8 @@ plt.plot(historial.history["loss"])
 
 print("Hagamos una predicción!")
 #le pasamos los datitos de entrada y nos da la respuesta wiiii
-resultado = modelo.predict([100.0])
+# convertimos a un numpy array pa que lo entienda  :c
+resultado = modelo.predict(np.array([100.0]))
 print("El resultado es " + str(resultado) + " fahrenheit!")
 
 
